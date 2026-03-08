@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foodieee</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="menu.css">
+</head>
+
+<body style="background-color: #ffb6c1;">
+<nav>
+  <img src="logo.svg" alt="logo" width="auto" height="100px" style="transform: scaleX(-1);">
+  <h1>Foodieee Fast Delivery</h1>
+  <a href="index.html">Home</a>
+  <a href="menu.html">Menu</a>
+</nav>
+
+<div class="search-container">
+  <input type="text" id="search-bar" class="search" placeholder="Search food...">
+</div>
+
+<div id="food-gallery"></div>
+
+<script>
+const data = [
+  { "name": "Chicken Briyani", "price": 150, "rating": 4.7, "image": "briyani/chick.jpg" },
+  { "name": "Egg Briyani", "price": 100, "rating": 4.3, "image": "briyani/egg.jpg" },
+  { "name": "Fish Briyani", "price": 170, "rating": 4.2, "image": "briyani/fish.webp" },
+  { "name": "Mutton Briyani", "price": 225, "rating": 4.6, "image": "briyani/mutton.jpg" },
+  { "name": "Prawn Briyani", "price": 175, "rating": 4.7, "image": "briyani/prawn.webp" },
+  { "name": "Veg Briyani", "price": 120, "rating": 4.2, "image": "briyani/veg.jpg" },
+  { "name": "Cheese Burger", "price": 135, "rating": 4.4, "image": "burger/cheese_burger.jpg" },
+  { "name": "Chicken Burger", "price": 144, "rating": 4.6, "image": "burger/chick_burger.jpg" },
+  { "name": "Veg Burger", "price": 99, "rating": 4.7, "image": "burger/veg_burger.jpg" },
+  { "name": "Black Forest Cake", "price": 500, "rating": 3.9, "image": "cake/black_forest_cake.jpg" },
+  { "name": "Brownie", "price": 145, "rating": 3.6, "image": "cake/brownie_cake.webp" },
+  { "name": "Cheese Cake", "price": 369, "rating": 4.2, "image": "cake/cheese_cake.jpg" },
+  { "name": "Chocolate Cake", "price": 534, "rating": 3.6, "image": "cake/choch_cake.webp" },
+  { "name": "Rasamalai Cake", "price": 785, "rating": 4.6, "image": "cake/rasamalai_cake.webp" },
+  { "name": "Red Velvet Cake", "price": 569, "rating": 4.4, "image": "cake/red_velvet_cake.webp" },
+  { "name": "Strawberry Cake", "price": 432, "rating": 4.3, "image": "cake/strawberry_cake.webp" },
+  { "name": "Plain Dosa", "price": 25, "rating": 4.4, "image": "dosa/normal_dosa.webp" },
+  { "name": "Egg Dosa", "price": 47, "rating": 4.5, "image": "dosa/egg_dosa.webp" },
+  { "name": "Ghee Roast", "price": 50, "rating": 4.5, "image": "dosa/ghee_dosa.webp" },
+  { "name": "Masala Dosa", "price": 40, "rating": 4.7, "image": "dosa/masal_dosa.jpg" },
+  { "name": "Rava Dosa", "price": 27, "rating": 4.4, "image": "dosa/rava_dosa.jpg" },
+  { "name": "Idli", "price": 10, "rating": 4.2, "image": "idli/idli.avif" },
+  { "name": "Mini Idli", "price": 40, "rating": 4.3, "image": "idli/mini_idli.jpg" },
+  { "name": "Sambar Idli", "price": 35, "rating": 3.5, "image": "idli/sambar_idli.jpg" },
+  { "name": "Chicken 65", "price": 78, "rating": 4.2, "image": "Non-veg/chick_fry.webp" },
+  { "name": "Fish Fry", "price": 150, "rating": 4.2, "image": "Non-veg/fish_fry.webp" },
+  { "name": "Chicken Gravy", "price": 145, "rating": 4.5, "image": "Non-veg/chick_gravy.jpg" },
+  { "name": "Egg Gravy", "price": 70, "rating": 4.2, "image": "Non-veg/egg_gravy.webp" },
+  { "name": "Mutton Gravy", "price": 160, "rating": 4.2, "image": "Non-veg/mutton_gravy.png" },
+  { "name": "Chicken Noodels", "price": 239, "rating": 4.2, "image": "noodels/chick_noodles.webp" },
+  { "name": "Paneer Noodels", "price": 150, "rating": 4.2, "image": "noodels/paneer_noodels.webp" },
+  { "name": "Veg Noodles", "price": 120, "rating": 3.5, "image": "noodels/veg_noodles.webp" }
+];
+
+function displayFoods(foods) {
+  const gallery = document.getElementById('food-gallery');
+  gallery.innerHTML = "";
+  foods.forEach(food => {
+    gallery.innerHTML += `
+      <div class="food-card">
+        <img src="${food.image}" alt="${food.name}">
+        <div class="card-row">
+          <span class="food-name">${food.name}</span>
+          <span class="food-price">₹${food.price}</span>
+        </div>
+        <div class="card-row">
+          <span class="food-rating">⭐ ${food.rating}</span>
+          <button class="order-btn">Order</button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+displayFoods(data);
+
+document.getElementById('search-bar').addEventListener('input', function () {
+  const searchValue = this.value.toLowerCase();
+  const filteredFoods = data.filter(food => food.name.toLowerCase().includes(searchValue));
+  displayFoods(filteredFoods);
+});
+</script>
+</body>
+</html>
